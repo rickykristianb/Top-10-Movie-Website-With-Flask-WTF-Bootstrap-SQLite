@@ -1,0 +1,42 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+  {{ super() }}
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nunito+Sans:300,400,700">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+{% endblock %}
+
+{% block title %}Edit Movies{% endblock %}
+
+{% block content %}
+<div class="content">
+  <h1 class="heading">{{movie.title}} {{movie.id}}</h1>
+    <p class="description">Edit Movie Rating</p>
+  </div>
+<div class="container">
+
+  <form action="{{ url_for('edit_rating', id=movie.id) }}" method="post">
+    {{ form.csrf_token }}
+    {{ wtf.quick_form(form, novalidate=True) }}
+
+    <!-- using the manual form -->
+<!--  <p>-->
+<!--    {{ form.rating.label }} <br> {{ form.rating }}-->
+<!--    {% for error in form.rating.errors %}-->
+<!--      <span style="color:red">{{ error }}</span>-->
+<!--    {% endfor %}-->
+<!--  </p>-->
+<!--  <p>-->
+<!--    {{ form.review.label }} <br> {{ form.review(size=50) }}-->
+<!--    {% for error in form.review.errors %}-->
+<!--      <span style="color:red">{{ error }}</span>-->
+<!--    {% endfor %}-->
+<!--  </p>-->
+<!--  {{ form.submit }}-->
+<!--    <input hidden="hidden" name="id" value="{{ movie.id }}">-->
+  </form>
+
+</div>
+{% endblock %}
